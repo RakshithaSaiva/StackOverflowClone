@@ -8,7 +8,7 @@ export const getAllUsers= async(req,res) =>{
         allUsers.forEach((users) => {
             allUsersDetails.push({ _id:users._id, name: users.name, about:users.about, tags: users.tags, joinedOn:users.joinedOn,})
         })
-        console.log(allUsersDetails)
+    
         res.status(200).json(allUsersDetails);
     } catch (error) {
         res.status(404).json({message: error.message});
