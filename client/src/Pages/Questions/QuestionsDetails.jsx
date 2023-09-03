@@ -143,8 +143,7 @@ const QuestionsDetails = () => {
                               <button type='button' onClick={handleShare}>Share</button>
                               {
                                User && User.result._id === question.userId &&
-                               (
-                              <button type = 'button' onClick ={handleDelete} >
+                               (<button type = 'button' onClick ={handleDelete} >
                                Delete
                                </button> 
                               )
