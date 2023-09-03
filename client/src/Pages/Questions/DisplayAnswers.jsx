@@ -6,7 +6,7 @@ import {deleteAnswer} from '../../actions/question'
 import Avatar from '../../components/Avatar/Avatar'
 
 const DisplayAnswers = ({question,handleShare}) => {
-  const User= useSelector((state) => (state.currentUserReducer))
+  const User= useSelector((state) => state.currentUserReducer)
   const { id } = useParams()
   const dispatch = useDispatch()
 

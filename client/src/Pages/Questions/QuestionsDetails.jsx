@@ -15,8 +15,8 @@ import copy from 'copy-to-clipboard'
 
 const QuestionsDetails = () => {
 
-    const { id } = useParams()
-    const questionsList= useSelector( state =>state.questionsReducer)
+    const { id } = useParams();
+    const questionsList= useSelector( state =>state.questionsReducer);
 
     // console.log(id)
     
@@ -72,15 +72,15 @@ const QuestionsDetails = () => {
     //         userId: 2
     //     }]
     // }]
-   const [Answer, setAnswer] = useState('')
-   const Navigate= useNavigate()
-   const dispatch= useDispatch()
-   const User= useSelector((state) => (state.currentUserReducer))
-   const location = useLocation()
-   const url ='https://stack-overflow-rakshitha.netlify.app'
+   const [Answer, setAnswer] = useState('');
+   const Navigate= useNavigate();
+   const dispatch= useDispatch();
+   const User= useSelector((state) => state.currentUserReducer);
+   const location = useLocation();
+   const url ='https://stack-overflow-rakshitha.netlify.app';
 
    const handlePostAns= (e, answerLength) =>{
-      e.preventDefault()
+      e.preventDefault();
       if (User === null){
           alert('Login or Signup to answer a question')
           Navigate('/Auth')
@@ -94,8 +94,8 @@ const QuestionsDetails = () => {
    }
    
     const handleShare = () => {
-       copy(url+ location.pathname)
-       alert('Copied url: '+url+location.pathname)
+       copy(url+ location.pathname);
+       alert('Copied url: '+url+location.pathname);
     }
 
     const handleDelete =() => {
@@ -114,10 +114,10 @@ const QuestionsDetails = () => {
   return (
     <div className='question-details-page'>
        {
-         questionsList.data === null ?
-          <h1> Loading...</h1> :
+         questionsList.data === null ? (
+          <h1> Loading...</h1> ) : (
          <>{
-           questionsList.data.filter(question => question._id === id).map(question =>(
+           questionsList.data.filter((question) => question._id === id).map((question) =>(
             <div key={question._id}>
                 <section className='question-details-container-1'>
                        <h1>{question.questionTitle}</h1>
@@ -142,9 +142,12 @@ const QuestionsDetails = () => {
                             <div>
                               <button type='button' onClick={handleShare}>Share</button>
                               {
-                                User.result._id === question.userId && (
-                                  <button type='button' onClick= {handleDelete}>Delete</button>
-                                  )
+                               User && User.result._id === question.userId &&
+                               (
+                              <button type = 'button' onClick ={handleDelete} >
+                               Delete
+                               </button> 
+                              )
                               }
                             
                             </div>
@@ -164,7 +167,7 @@ const QuestionsDetails = () => {
                 {
                   question.noOfAnswers !==0 && (
                     <section>
-                      <h1>{ question.noOfAnswers} Answers</h1>
+                      <h3>{ question.noOfAnswers} Answers</h3>
                       <DisplayAnswers  key={question._id} question={question} handleShare={handleShare}/>
                     </section>
                   )
@@ -189,9 +192,10 @@ const QuestionsDetails = () => {
              ))
             }
          </>
+          )
         }
     </div>
   )
 }
 
-export default QuestionsDetails
+export default QuestionsDetails;
